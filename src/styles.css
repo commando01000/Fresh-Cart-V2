@@ -1,1 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f0f3f2;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0aad0a;
+}
+
+body {
+  font-family: "Encode Sans Expanded", sans-serif;
+}
+
+.text-main {
+  color: #0aad0a;
+}
+
+.text-main-light {
+  color: #f0f3f2;
+}
+
+.bg-main-light {
+  background-color: #f0f3f2;
+}
+
+.bg-main {
+  background-color: #0aad0a;
+}
+
+.rating-color {
+  color: #ffc908;
+}
+
+.font-sm {
+  font-size: 11px;
+}
+
+.main-btn {
+  background-color: #0aad0a;
+  color: #fff;
+  border-radius: 5px;
+  border: unset;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.main-btn:disabled {
+  background-color: #078e076c;
+  color: #ffffff9c;
+  cursor: not-allowed;
+}
+
+.product {
+  border: 1px solid #0aad0a;
+  border-radius: 5px;
+  padding: 4px;
+  box-shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+}
+
+.active-link {
+  color: #fff !important;
+  background-color: #0aad0a !important;
+  border-radius: 5px !important;
+}
