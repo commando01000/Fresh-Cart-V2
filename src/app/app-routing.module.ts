@@ -31,22 +31,6 @@ const routes: Routes = [
         title: 'Cart',
       },
       {
-        path: 'login',
-        loadComponent: () =>
-          import('./components/login/login.component').then(
-            (m) => m.LoginComponent
-          ),
-        title: 'Login',
-      },
-      {
-        path: 'register',
-        loadComponent: () =>
-          import('./components/register/register.component').then(
-            (m) => m.RegisterComponent
-          ),
-        title: 'Register',
-      },
-      {
         path: 'brands',
         loadComponent: () =>
           import('./components/brands/brands.component').then(
