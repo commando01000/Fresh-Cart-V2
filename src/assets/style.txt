@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap');
+
+$bgColor:#131722;
+$lightBgColor:#24baef;
+$bgTransparent:rgba(36,186,239,.6) ;
+$fontColor:#fff;
+$borderColor:#a8a8a83d;
+$borderHeight:1px;
+$secondFontColor:#949cb0;
+
+body
+{
+    background-color: white;
+    color: $bgColor;
+    font-family: "Montserrat Alternates";
+}
+.brd
+{
+    height: $borderHeight;
+    background-color: $borderColor;
+}
+......\دا نفس الapis بس مع السيرفر الجديد اللي اشترناه 
+
+https://movies-api.routemisr.com/
+
+ودا لينك مشروع ال ecommerce 
+https://ecommerce.routemisr.com
+
+ودي الدوكمنتيشن بتاعته من علي postMan وقريب هعمل docs كويسة ليها  ان شاء الله 
+
+https://documenter.getpostman.com/view/5709532/2s93JqTRWN

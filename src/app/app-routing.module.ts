@@ -9,11 +9,7 @@ const routes: Routes = [
         (m) => m.BlankLayoutComponent
       ),
     children: [
-      {
-        path: '',
-        redirectTo: 'Home',
-        pathMatch: 'full',
-      },
+      { path: '', redirectTo: 'Home', pathMatch: 'full' },
       {
         path: 'Home',
         loadComponent: () =>
@@ -62,9 +58,10 @@ const routes: Routes = [
           ),
         title: 'Not Found',
       },
-      { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
+      // Remove the catch-all route here
     ],
   },
+  
   {
     path: 'auth',
     loadComponent: () =>
@@ -72,12 +69,7 @@ const routes: Routes = [
         (m) => m.AuthLayoutComponent
       ),
     children: [
-      {
-        path: '',
-        redirectTo: 'login',
-        title: 'Login',
-        pathMatch: 'full',
-      },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
         path: 'login',
         loadComponent: () =>
@@ -105,6 +97,7 @@ const routes: Routes = [
       { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
     ],
   },
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }, // Add a global catch-all route if needed
 ];
 
 @NgModule({
