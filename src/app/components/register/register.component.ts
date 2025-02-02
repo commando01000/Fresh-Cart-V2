@@ -7,15 +7,24 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  /**
+   *
+   */
+  constructor(private _AuthService: AuthService, private _router: Router) {}
+
+  errorMessage: string = '';
+
   registerForm: FormGroup = new FormGroup(
     {
       name: new FormControl('', [
@@ -51,6 +60,24 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
-    console.log(this.registerForm.value);
+    const userData = this.registerForm.value;
+    if (this.registerForm.valid) {
+      this._AuthService.Register(userData).subscribe({
+        next: (response) => {
+          // console.log(response);
+          if (response.message === 'success') {
+            this.registerForm.reset();
+            this._router.navigate(['/auth/login']);
+          }
+        },
+        error: (error) => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
+    }
   }
 }

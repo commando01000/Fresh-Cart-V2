@@ -147,5 +147,11 @@
         Register
       </button>
     </form>
+    <div class="w-100 text-center">
+      <span> Already have an account?</span> <a routerLink="/auth/login"> Login</a>
+    </div>
+    <p class="alert alert-danger p-1 w-50 mx-auto" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
   </div>
 </section>
