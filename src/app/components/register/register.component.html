@@ -144,7 +144,7 @@
 
       <!-- Submit Button -->
       <button [disabled]="registerForm.invalid" class="main-btn mt-2">
-        Register
+        Register <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
       </button>
     </form>
     <div class="w-100 text-center">

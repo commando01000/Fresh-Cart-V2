@@ -24,6 +24,7 @@ export class RegisterComponent {
   constructor(private _AuthService: AuthService, private _router: Router) {}
 
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   registerForm: FormGroup = new FormGroup(
     {
@@ -62,6 +63,7 @@ export class RegisterComponent {
   onSubmit(): void {
     const userData = this.registerForm.value;
     if (this.registerForm.valid) {
+      this.isLoading = true;
       this._AuthService.Register(userData).subscribe({
         next: (response) => {
           // console.log(response);
@@ -73,9 +75,10 @@ export class RegisterComponent {
         error: (error) => {
           console.log(error);
           this.errorMessage = error.error.message;
+          this.isLoading = false;
         },
         complete: () => {
-          console.log('complete');
+          this.isLoading = false;
         },
       });
     }

@@ -13,4 +13,15 @@ export class AuthService {
       userData
     );
   }
+
+  Login(userDate: object): Observable<any> {
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/signin',
+      userDate
+    );
+  }
+
+  ExternalLogin(provider: string, returnUrl: string): void {
+    window.location.href = `https://localhost:7154/api/Account/ExternalLogin?provider=${provider}&returnUrl=${returnUrl}`;
+  }
 }
