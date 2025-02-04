@@ -41,6 +41,7 @@ export class LoginComponent {
     const provider = 'Google';
     const returnUrl = '/Home'; // The page to redirect to after login
     this._AuthService.ExternalLogin(provider, returnUrl);
+    this._AuthService.LoggedIn.next(true);
   }
 
   onSubmit(): void {
@@ -49,15 +50,20 @@ export class LoginComponent {
       this.isLoading = true;
       this._AuthService.Login(userData).subscribe({
         next: (response) => {
-          // console.log(response);
+          console.log(response);
           if (response.message === 'success') {
             this.loginForm.reset();
-            this._router.navigate(['/home']);
+            this.isLoading = false;
+            this._AuthService.LoggedIn.next(true);
+            localStorage.setItem('token', response.token);
+            this._AuthService.getUserData();
+            this._router.navigate(['/Home']);
           }
         },
         error: (error) => {
           console.log(error);
           this.errorMessage = error.error.message;
+          this._AuthService.LoggedIn.next(false);
           this.isLoading = false;
         },
         complete: () => {

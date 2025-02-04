@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./layouts/blank-layout/blank-layout.component').then(
         (m) => m.BlankLayoutComponent
@@ -61,9 +63,9 @@ const routes: Routes = [
       // Remove the catch-all route here
     ],
   },
-  
+
   {
-    path: 'auth',
+    path: '',
     loadComponent: () =>
       import('./layouts/auth-layout/auth-layout.component').then(
         (m) => m.AuthLayoutComponent
@@ -94,7 +96,6 @@ const routes: Routes = [
           ),
         title: 'Not Found',
       },
-      { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
     ],
   },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' }, // Add a global catch-all route if needed
