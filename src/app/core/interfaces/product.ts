@@ -1,3 +1,5 @@
+import { Category } from "./category"
+
 export interface Root {
     results: number
     metadata: Metadata
@@ -40,12 +42,6 @@ export interface Root {
     category: string
   }
   
-  export interface Category {
-    _id: string
-    name: string
-    slug: string
-    image: string
-  }
   
   export interface Brand {
     _id: string

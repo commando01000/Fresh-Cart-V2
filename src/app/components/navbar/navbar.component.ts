@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -11,16 +11,18 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   /**
    *
    */
   isLogin = new BehaviorSubject(false);
-  constructor(private _authService: AuthService, private _router: Router) {
-    _authService.userData.subscribe({
+  constructor(private _authService: AuthService, private _router: Router) {}
+  ngOnInit(): void {
+    this._authService.userData.subscribe({
       next: () => {
         if (this._authService.userToken.getValue()) {
           this.isLogin.next(true);
+          console.log(this._authService.userData.getValue());
         }
       },
       error: (error) => {
@@ -29,6 +31,7 @@ export class NavbarComponent {
       },
       complete: () => {
         console.log('complete');
+        console.log(this._authService.userData.getValue());
       },
     });
   }
