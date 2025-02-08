@@ -13,7 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div
-      *ngIf="isLogin.getValue()"
+      *ngIf="isLogin | async"
       class="collapse navbar-collapse"
       id="collapsibleNavId"
     >

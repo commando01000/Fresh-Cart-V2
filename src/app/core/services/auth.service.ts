@@ -27,7 +27,20 @@ export class AuthService {
   }
 
   ExternalLogin(provider: string, returnUrl: string): void {
-    window.location.href = `https://localhost:7154/api/Account/ExternalLogin?provider=${provider}&returnUrl=${returnUrl}`;
+    window.open(
+      `https://localhost:7154/api/Account/ExternalLogin?provider=${provider}&returnUrl=${returnUrl}`,
+      '_self'
+    );
+  }
+
+  // NEW FUNCTION: Handle External Login Response
+  handleExternalLoginResponse(token: any): void {
+    if (token) {
+      localStorage.setItem('token', token);
+      this.userToken.next(token);
+      this.getUserData();
+      this.LoggedIn.next(true);
+    }
   }
 
   SignOut(): void {
@@ -39,6 +52,7 @@ export class AuthService {
 
   getUserData(): void {
     let userToken: any = localStorage.getItem('token');
+    this.LoggedIn.next(true);
     let decodedToken: any = jwtDecode(userToken);
     if (userToken) {
       this.userToken.next(userToken);

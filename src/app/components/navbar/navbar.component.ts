@@ -18,6 +18,9 @@ export class NavbarComponent implements OnInit {
   isLogin = new BehaviorSubject(false);
   constructor(private _authService: AuthService, private _router: Router) {}
   ngOnInit(): void {
+    // Load authentication state from AuthService
+    this._authService.getUserData();
+    this.isLogin.next(this._authService.LoggedIn.getValue());
     this._authService.userData.subscribe({
       next: () => {
         if (this._authService.userToken.getValue()) {

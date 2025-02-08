@@ -1,9 +1,41 @@
+<section id="main-slider">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <owl-carousel-o [options]="mainSlideOptions">
+          <ng-container>
+            <ng-template carouselSlide>
+              <img height="400" src="./assets/images/slider-image-1.jpeg" alt="slide_1" />
+            </ng-template>
+            <ng-template carouselSlide>
+              <img height="400" src="./assets/images/slider-image-2.jpeg" alt="slide_2" />
+            </ng-template>
+            <ng-template carouselSlide>
+              <img height="400" src="./assets/images/slider-image-3.jpeg" alt="slide_3" />
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+        <div>Some tags after</div>
+      </div>
+      <div class="col-md-3">
+        <img height="200" src="./assets/images/slider-image-2.jpeg" alt="slide_1">
+        <img height="200" src="./assets/images/slider-image-3.jpeg" alt="slide_2">
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="py-4">
   <div>Some tags before</div>
   <owl-carousel-o [options]="categoryOptions">
     <ng-container *ngFor="let slide of Categories">
       <ng-template carouselSlide [id]="slide._id">
-        <img height="300" [src]="slide.image" [alt]="slide.name" [title]="slide.name" />
+        <img
+          height="300"
+          [src]="slide.image"
+          [alt]="slide.name"
+          [title]="slide.name"
+        />
         <h6 class="text-main">{{ slide.name }}</h6>
       </ng-template>
     </ng-container>

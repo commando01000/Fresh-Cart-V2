@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     navSpeed: 700,
     navText: ['previous', 'next'],
     responsive: {
@@ -49,6 +49,18 @@ export class HomeComponent implements OnInit {
       },
     },
     nav: true,
+  };
+
+  mainSlideOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    navText: ['previous', 'next'],
+    items: 1,
+    nav: false,
   };
 
   ngOnInit(): void {

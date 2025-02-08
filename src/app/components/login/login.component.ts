@@ -41,7 +41,7 @@ export class LoginComponent {
     const provider = 'Google';
     const returnUrl = '/Home'; // The page to redirect to after login
     this._AuthService.ExternalLogin(provider, returnUrl);
-    this._AuthService.LoggedIn.next(true);
+    this._AuthService.getUserData();
   }
 
   onSubmit(): void {

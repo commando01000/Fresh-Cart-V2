@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { auth2Guard } from './core/guards/auth2.guard';
 
 const routes: Routes = [
   {
@@ -60,12 +61,12 @@ const routes: Routes = [
           ),
         title: 'Not Found',
       },
-      // Remove the catch-all route here
     ],
   },
 
   {
     path: '',
+    canActivate: [auth2Guard],
     loadComponent: () =>
       import('./layouts/auth-layout/auth-layout.component').then(
         (m) => m.AuthLayoutComponent
@@ -98,7 +99,17 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }, // Add a global catch-all route if needed
+
+  // ✅ Add this external login callback route (UNGUARDED)
+  {
+    path: 'external-login-callback',
+    loadComponent: () =>
+      import(
+        './components/external-login-callback/external-login-callback.component'
+      ).then((m) => m.ExternalLoginCallbackComponent),
+  },
+
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }, // Catch-all route
 ];
 
 @NgModule({
