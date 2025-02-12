@@ -12,4 +12,10 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './blank-layout.component.html',
   styleUrls: ['./blank-layout.component.css'],
 })
-export class BlankLayoutComponent {}
+export class BlankLayoutComponent {
+
+
+  scrollTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}

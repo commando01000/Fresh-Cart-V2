@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
+    autoplay: true,
     navText: ['previous', 'next'],
     responsive: {
       0: {
@@ -58,6 +59,9 @@ export class HomeComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplaySpeed: 1000,
     navText: ['previous', 'next'],
     items: 1,
     nav: false,

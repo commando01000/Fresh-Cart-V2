@@ -17,6 +17,10 @@ body {
   font-family: "Encode Sans Expanded", sans-serif;
 }
 
+.main-section {
+  padding-top: 80px !important;
+}
+
 .text-main {
   color: #0aad0a;
 }
@@ -83,4 +87,23 @@ a:hover {
 
 img {
   width: 100%;
+}
+
+.btn-up {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #0aad0a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+  font-size: 20px;
 }
