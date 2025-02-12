@@ -54,6 +54,14 @@ const routes: Routes = [
         title: 'Products',
       },
       {
+        path : 'products/:id',
+        loadComponent: () =>
+          import('./components/product-details/product-details.component').then(
+            (m) => m.ProductDetailsComponent
+          ),
+        title: 'Product Details',
+      },
+      {
         path: 'not-found',
         loadComponent: () =>
           import('./components/notfound/notfound.component').then(

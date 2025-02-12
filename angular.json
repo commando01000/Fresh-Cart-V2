@@ -9,6 +9,9 @@
         "@schematics/angular:component": {
           "style": "css",
           "standalone": true
+        },
+        "@schematics/angular:pipe": {
+          "standalone": true
         }
       },
       "root": "",

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProductService } from 'src/app/core/services/product.service';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CutTextPipe } from 'src/app/core/pipes/cut-text.pipe';
@@ -10,7 +10,7 @@ import { Category } from 'src/app/core/interfaces/category';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CutTextPipe, CarouselModule],
+  imports: [CommonModule, CutTextPipe, CarouselModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
