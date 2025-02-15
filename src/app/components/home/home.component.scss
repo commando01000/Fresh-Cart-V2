@@ -1,0 +1,16 @@
+.product {
+  overflow: hidden;
+  &:hover {
+    .add-to-cart {
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
+      transform: translateY(0);
+      z-index: 1;
+    }
+  }
+  .add-to-cart {
+    opacity: 0;
+    transform: translateY(150%);
+    transition: 0.8s ease-in-out;
+  }
+}

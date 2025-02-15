@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ProductService } from 'src/app/core/services/product.service';
@@ -6,13 +6,15 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CutTextPipe } from 'src/app/core/pipes/cut-text.pipe';
 import { Product } from 'src/app/core/interfaces/product';
 import { Category } from 'src/app/core/interfaces/category';
+import { CartService } from 'src/app/core/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, CutTextPipe, CarouselModule, RouterLink],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   /**
@@ -20,7 +22,10 @@ export class HomeComponent implements OnInit {
    */
   constructor(
     private _router: Router,
-    private _productService: ProductService
+    private _productService: ProductService,
+    private _cartService: CartService,
+    private toastr: ToastrService,
+    private _renderer2: Renderer2
   ) {}
 
   Products: Product[] = [];
@@ -90,6 +95,21 @@ export class HomeComponent implements OnInit {
       complete: () => {
         console.log('complete');
       },
+    });
+  }
+  addToCart(productId: string, btn: HTMLButtonElement): void {
+    // disable button to prevent multiple clicks
+    this._renderer2.setAttribute(btn, 'disabled', 'true');
+    this._cartService.addToCart(productId).subscribe({
+      next: (response) => {
+        this.toastr.success(response.message, 'Success');
+        this._renderer2.setAttribute(btn, 'disabled', 'false');
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+        this._renderer2.setAttribute(btn, 'disabled', 'false');
+      },
+      complete: () => {},
     });
   }
 }

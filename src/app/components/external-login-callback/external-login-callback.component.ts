@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './external-login-callback.component.html',
-  styleUrls: ['./external-login-callback.component.css'],
+  styleUrls: ['./external-login-callback.component.scss'],
 })
 export class ExternalLoginCallbackComponent implements OnInit {
   constructor(

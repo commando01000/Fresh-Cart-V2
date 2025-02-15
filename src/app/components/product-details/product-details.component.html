@@ -1,1 +1,42 @@
-<p>product-details works!</p>
+<section *ngIf="isProductLoaded" class="shadow w-75 mx-auto my-5 p-3 rounded" id="product-details">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-3">
+        <owl-carousel-o [options]="productDetailsOptions">
+          <ng-container *ngFor="let image of product.images">
+            <ng-template carouselSlide [id]="productId">
+              <img
+                [src]="image"
+                [alt]="product.title"
+                [title]="product.title"
+              />
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+      <div class="col-md-9">
+        <div class="product-info">
+          <h1 class="h3 product-title">
+            {{ product.title }}
+          </h1>
+          <h3 class="h6 text-main">{{ product.category?.name }}</h3>
+          <div class="d-flex align-items-center justify-content-between">
+            <span class="small text-muted">{{ product.price | currency }}</span>
+            <span
+              ><i class="fas fa-star rating-color"></i
+              >{{ product.ratingsAverage }}</span
+            >
+          </div>
+          <p class="text-muted pt-5">
+            {{ product.description }}
+          </p>
+          <div>
+            <button class="btn btn-outline-success main-btn w-100">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

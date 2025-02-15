@@ -10,10 +10,9 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [CommonModule, NavbarComponent, FooterComponent, RouterOutlet],
   templateUrl: './blank-layout.component.html',
-  styleUrls: ['./blank-layout.component.css'],
+  styleUrls: ['./blank-layout.component.scss'],
 })
 export class BlankLayoutComponent {
-
 
   scrollTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
