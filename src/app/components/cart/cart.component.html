@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<section
+  *ngIf="cartDetails; else msg"
+  id="cart"
+  class="w-75 mx-auto rounded shadow bg-main-light p-3 mb-3"
+>
+  <div class="container">
+    <h1 class="h2">Shop Cart</h1>
+    <p class="text-main">
+      Total Price : {{ cartDetails.totalCartPrice | currency : "EGP" }}
+    </p>
+    <div
+      class="row border-bottom pb-2"
+      *ngFor="let item of cartDetails.products"
+    >
+      <div class="col-md-1">
+        <img
+          class="w-100 img-fluid"
+          src="{{ item.product?.imageCover }}"
+          alt="{{ item.product?.title }}"
+          title="{{ item.product?.title }}"
+        />
+      </div>
+      <div class="col-md-11 d-flex justify-content-between align-items-center">
+        <div>
+          <h3 class="h6">
+            {{ item.product?.title }}
+          </h3>
+          <p class="text-main mb-0 small">
+            Price: {{ item.price | currency : "EGP" }}
+          </p>
+
+          <button class="btn m-0 p-0 text-main">
+            <i class="fas fa-trash-can"></i>Remove
+          </button>
+        </div>
+
+        <div>
+          <button class="btn btn-sm border-success">+</button>
+          <span>{{ item.count }}</span>
+          <button class="btn btn-sm border-success">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template class="text-center" #msg> <h2>Your Cart is Empty</h2> </ng-template>
