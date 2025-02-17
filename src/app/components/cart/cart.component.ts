@@ -52,6 +52,7 @@ export class CartComponent implements OnInit {
 
   updateCart(itemId: string, quantity: number, btn: HTMLButtonElement): void {
     // disable button to prevent multiple clicks
+    if (quantity < 1) return;
     this._renderer2.setAttribute(btn, 'disabled', 'true');
     this._cartService.updateCartItem(itemId, quantity).subscribe({
       next: (response) => {
@@ -64,6 +65,22 @@ export class CartComponent implements OnInit {
         this._renderer2.setAttribute(btn, 'disabled', 'false');
       },
       complete: () => {},
+    });
+  }
+
+  clearCart(clearCartBtn: HTMLButtonElement): void {
+    this._renderer2.setAttribute(clearCartBtn, 'disabled', 'true');
+    this._cartService.clearCart().subscribe({
+      next: (response) => {
+        this.toastr.success(response.message, 'Success');
+        this.cartDetails = response.data;
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+      },
+      complete: () => {
+        this._renderer2.setAttribute(clearCartBtn, 'disabled', 'false');
+      },
     });
   }
 }

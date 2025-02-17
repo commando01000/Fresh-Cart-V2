@@ -57,4 +57,15 @@ export class CartService {
       }
     );
   }
+
+  clearCart(): Observable<any> {
+    return this._httpClient.delete(
+      'https://ecommerce.routemisr.com/api/v1/cart',
+      {
+        headers: {
+          token: localStorage.getItem('token') || '',
+        },
+      }
+    );
+  }
 }

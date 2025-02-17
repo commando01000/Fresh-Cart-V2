@@ -8,6 +8,18 @@
     <p class="text-main">
       Total Price : {{ cartDetails.totalCartPrice | currency : "EGP" }}
     </p>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="h2">Shop Cart</h1>
+      <button
+        (click)="clearCart(clearCartBtn)"
+        #clearCartBtn
+        class="btn btn-sm btn-outline-danger"
+      >
+        Clear All
+      </button>
+    </div>
+
     <div
       class="row border-bottom pb-2"
       *ngFor="let item of cartDetails.products"
