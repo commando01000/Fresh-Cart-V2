@@ -29,19 +29,39 @@
             Price: {{ item.price | currency : "EGP" }}
           </p>
 
-          <button class="btn m-0 p-0 text-main">
+          <button
+            (click)="removeItem(item.product?._id, removeItemBtn)"
+            #removeItemBtn
+            class="btn btn-outline-success m-0 p-2 main-btn text-main"
+          >
             <i class="fas fa-trash-can"></i>Remove
           </button>
         </div>
 
-        <div>
-          <button class="btn btn-sm border-success">+</button>
-          <span>{{ item.count }}</span>
-          <button class="btn btn-sm border-success">-</button>
+        <div class="ps-2 pe-3">
+          <button
+            (click)="updateCart(item.product?._id, item.count + 1, addItemBtn)"
+            #addItemBtn
+            type="button"
+            class="btn btn-sm border-success"
+          >
+            +
+          </button>
+          <span class="px-2">{{ item.count }}</span>
+          <button
+            (click)="updateCart(item.product?._id, item.count - 1, subItemBtn)"
+            #subItemBtn
+            type="button"
+            class="btn btn-sm border-success"
+          >
+            -
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<ng-template class="text-center" #msg> <h2>Your Cart is Empty</h2> </ng-template>
+<ng-template class="text-center" #msg>
+  <h2>Your Cart is Empty</h2>
+</ng-template>

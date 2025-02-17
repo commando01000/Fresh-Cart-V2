@@ -32,4 +32,29 @@ export class CartService {
       },
     });
   }
+
+  removeCartItem(itemId: string): Observable<any> {
+    return this._httpClient.delete(
+      `https://ecommerce.routemisr.com/api/v1/cart/${itemId}`,
+      {
+        headers: {
+          token: localStorage.getItem('token') || '',
+        },
+      }
+    );
+  }
+
+  updateCartItem(itemId: string, quantity: number): Observable<any> {
+    return this._httpClient.put(
+      `https://ecommerce.routemisr.com/api/v1/cart/${itemId}`,
+      {
+        count: quantity,
+      },
+      {
+        headers: {
+          token: localStorage.getItem('token') || '',
+        },
+      }
+    );
+  }
 }
