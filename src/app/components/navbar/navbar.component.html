@@ -47,14 +47,21 @@
             >Categories</a
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/cart" routerLinkActive="active-link"
-            >Cart</a
-          >
-        </li>
       </ul>
 
       <ul class="navbar-nav ms-auto mt-2 align-items-center mt-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link position-relative"
+            routerLink="/cart"
+            ><i class="fa-2xl text-main fas fa-shopping-cart"></i>
+            <span
+              class="badge rounded-pill bg-warning position-absolute top-0 end-0"
+              >{{ cartNumber }}</span
+            >
+          </a>
+        </li>
+
         <li class="nav-item d-flex gap-3">
           <a href=""><i class="fab fa-facebook"></i></a>
           <a href=""><i class="fab fa-instagram"></i></a>
@@ -62,10 +69,7 @@
           <a href=""><i class="fab fa-linkedin"></i></a>
         </li>
         <li class="nav-item ms-2">
-          <a
-          style="cursor: pointer;"
-            class="nav-link"
-            (click)="SignOut()"
+          <a style="cursor: pointer" class="nav-link" (click)="SignOut()"
             >SignOut</a
           >
         </li>

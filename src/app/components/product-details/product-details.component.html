@@ -1,4 +1,8 @@
-<section *ngIf="isProductLoaded" class="shadow w-75 mx-auto my-5 p-3 rounded" id="product-details">
+<section
+  *ngIf="isProductLoaded"
+  class="shadow w-75 mx-auto my-5 p-3 rounded"
+  id="product-details"
+>
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-3">
@@ -31,7 +35,11 @@
             {{ product.description }}
           </p>
           <div>
-            <button class="btn btn-outline-success main-btn w-100">
+            <button
+              (click)="addToCart(product._id, btnAddToCart)"
+              #btnAddToCart
+              class="btn btn-outline-success main-btn w-100"
+            >
               <i class="fas fa-cart-plus"></i> Add to Cart
             </button>
           </div>

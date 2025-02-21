@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/core/services/product.service';
 import { Product } from 'src/app/core/interfaces/product';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -32,7 +34,10 @@ export class ProductDetailsComponent implements OnInit {
   };
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _productService: ProductService
+    private _productService: ProductService,
+    private toastr: ToastrService,
+    private _renderer2: Renderer2,
+    private _cartService: CartService
   ) {}
 
   get isProductLoaded(): boolean {
@@ -62,6 +67,23 @@ export class ProductDetailsComponent implements OnInit {
       complete: () => {
         console.log('complete');
       },
+    });
+  }
+
+  addToCart(productId: any, btn: HTMLButtonElement): void {
+    // disable button to prevent multiple clicks
+    this._renderer2.setAttribute(btn, 'disabled', 'true');
+    this._cartService.addToCart(productId).subscribe({
+      next: (response) => {
+        this.toastr.success(response.message, 'Success');
+        this._renderer2.setAttribute(btn, 'disabled', 'false');
+        this._cartService.cartNumber.next(response.numOfCartItems);
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+        this._renderer2.setAttribute(btn, 'disabled', 'false');
+      },
+      complete: () => {},
     });
   }
 }

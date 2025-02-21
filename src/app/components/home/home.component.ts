@@ -97,13 +97,16 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+  
   addToCart(productId: string, btn: HTMLButtonElement): void {
     // disable button to prevent multiple clicks
     this._renderer2.setAttribute(btn, 'disabled', 'true');
     this._cartService.addToCart(productId).subscribe({
       next: (response) => {
+        console.log(response);
         this.toastr.success(response.message, 'Success');
         this._renderer2.setAttribute(btn, 'disabled', 'false');
+        this._cartService.cartNumber.next(response.numOfCartItems);
       },
       error: (error) => {
         this.toastr.error(error.error.message, 'Error');
