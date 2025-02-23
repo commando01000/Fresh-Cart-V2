@@ -32,7 +32,6 @@ export class NavbarComponent implements OnInit {
       next: () => {
         if (this._authService.userToken.getValue()) {
           this.isLogin.next(true);
-          console.log(this._authService.userData.getValue());
         }
       },
       error: (error) => {
@@ -41,7 +40,6 @@ export class NavbarComponent implements OnInit {
       },
       complete: () => {
         console.log('complete');
-        console.log(this._authService.userData.getValue());
       },
     });
 

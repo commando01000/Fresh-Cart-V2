@@ -2,11 +2,12 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
@@ -72,7 +73,7 @@ export class CartComponent implements OnInit {
     this._renderer2.setAttribute(clearCartBtn, 'disabled', 'true');
     this._cartService.clearCart().subscribe({
       next: (response) => {
-        this.toastr.success(response.message, 'Success');
+        this.toastr.success( "Cart cleared successfully", 'Success');
         this.cartDetails = response.data;
         this._cartService.cartNumber.next(0);
       },
@@ -83,9 +84,5 @@ export class CartComponent implements OnInit {
         this._renderer2.setAttribute(clearCartBtn, 'disabled', 'false');
       },
     });
-  }
-
-  checkout(): void {
-    
   }
 }

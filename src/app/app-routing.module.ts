@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { auth2Guard } from './core/guards/auth2.guard';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -54,7 +55,23 @@ const routes: Routes = [
         title: 'Products',
       },
       {
-        path : 'products/:id',
+        path: 'payments/:id',
+        loadComponent: () =>
+          import('./components/payment/payment.component').then(
+            (m) => m.PaymentComponent
+          ),
+        title: 'Payments',
+      },
+      {
+        path: 'allorders',
+        loadComponent: () =>
+          import('./components/allorders/allorders.component').then(
+            (m) => m.AllordersComponent
+          ),
+        title: 'All Orders',
+      },
+      {
+        path: 'products/:id',
         loadComponent: () =>
           import('./components/product-details/product-details.component').then(
             (m) => m.ProductDetailsComponent
