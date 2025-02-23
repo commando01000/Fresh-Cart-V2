@@ -45,7 +45,7 @@ body {
   font-size: 11px;
 }
 
-.main-btn {
+.main-btn:not([disabled]) {
   background-color: #0aad0a;
   color: #fff;
   border-radius: 5px;
@@ -54,7 +54,7 @@ body {
   padding: 4px 8px;
 }
 
-.main-btn:disabled {
+.main-btn[disabled] {
   background-color: #078e076c;
   color: #ffffff9c;
   cursor: not-allowed;

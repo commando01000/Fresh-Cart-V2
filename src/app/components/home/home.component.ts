@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
       },
     });
   }
-  
+
   addToCart(productId: string, btn: HTMLButtonElement): void {
     // disable button to prevent multiple clicks
     this._renderer2.setAttribute(btn, 'disabled', 'true');
@@ -105,12 +105,12 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.toastr.success(response.message, 'Success');
-        this._renderer2.setAttribute(btn, 'disabled', 'false');
+        this._renderer2.removeAttribute(btn, 'disabled');
         this._cartService.cartNumber.next(response.numOfCartItems);
       },
       error: (error) => {
         this.toastr.error(error.error.message, 'Error');
-        this._renderer2.setAttribute(btn, 'disabled', 'false');
+        this._renderer2.removeAttribute(btn, 'disabled');
       },
       complete: () => {},
     });

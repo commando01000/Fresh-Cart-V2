@@ -74,6 +74,7 @@ export class CartComponent implements OnInit {
       next: (response) => {
         this.toastr.success(response.message, 'Success');
         this.cartDetails = response.data;
+        this._cartService.cartNumber.next(0);
       },
       error: (error) => {
         this.toastr.error(error.error.message, 'Error');
@@ -82,5 +83,9 @@ export class CartComponent implements OnInit {
         this._renderer2.setAttribute(clearCartBtn, 'disabled', 'false');
       },
     });
+  }
+
+  checkout(): void {
+    
   }
 }
