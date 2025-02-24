@@ -1,0 +1,78 @@
+<section class="py-4" *ngIf="Products.length > 0">
+  <div class="container">
+    <h1 class="mb-3 text-center">Popular Products</h1>
+    <div class="row justify-content-center g-4">
+      <div
+        *ngFor="
+          let product of Products
+            | paginate
+              : {
+                  id: 'products',
+                  itemsPerPage: pageSize,
+                  currentPage: pageNumber,
+                  totalItems: totalProducts
+                }
+        "
+        class="col-sm-6 col-md-4 col-lg-3 col-xl-2"
+      >
+        <div class="product h-100 d-flex flex-column">
+          <header>
+            <img
+              class="w-100 img-fluid"
+              style="cursor: pointer !important"
+              [src]="product.imageCover"
+              title="{{ product.title }}"
+              alt="{{ product.title }}"
+              [routerLink]="['/products', product._id]"
+            />
+            <div class="product-info">
+              <h3 class="h6 product-title">
+                {{ product.title | cutText : 3 }}
+              </h3>
+              <h4 class="h6 text-main">{{ product.category.name }}</h4>
+              <div
+                class="d-flex align-items-center justify-content-between small"
+              >
+                <span class="small text-muted">{{
+                  product.price | currency
+                }}</span>
+                <span
+                  ><i class="fas fa-star rating-color"></i
+                  >{{ product.ratingsAverage }}</span
+                >
+              </div>
+            </div>
+          </header>
+          <!-- adjust the footer to be at the bottom -->
+          <footer class="mt-auto add-to-cart">
+            <!-- Add to cart -->
+            <button
+              (click)="addToCart(product._id, btnAddToCart)"
+              #btnAddToCart
+              class="btn btn-outline-success main-btn w-100"
+            >
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </footer>
+        </div>
+      </div>
+      <div class="text-center">
+        <pagination-controls
+          id="products"
+          (pageChange)="pageChanged($event)"
+          (pageBoundsCorrection)="pageChanged($event)"
+          [maxSize]="9"
+          [directionLinks]="true"
+          [autoHide]="true"
+          [responsive]="true"
+          previousLabel="Previous"
+          nextLabel="Next"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</section>

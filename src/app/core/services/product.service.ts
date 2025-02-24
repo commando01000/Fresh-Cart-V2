@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class ProductService {
   constructor(private _httpClient: HttpClient) {}
-  getProducts() {
+  getProducts(pageNumber: number = 1) {
     return this._httpClient.get(
-      'https://ecommerce.routemisr.com/api/v1/products'
+      `https://ecommerce.routemisr.com/api/v1/products?page=${pageNumber}`
     );
   }
 
