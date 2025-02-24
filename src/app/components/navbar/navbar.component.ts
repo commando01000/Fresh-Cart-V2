@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -65,6 +65,12 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
+
+  // scroll Event
+  @HostListener('window:scroll') // works for body, document, window
+  @ViewChild('navBar')
+  navElement: ElementRef;
+  onWindowScroll(): void {}
 
   SignOut(): void {
     this._authService.SignOut();
