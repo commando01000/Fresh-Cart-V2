@@ -1,4 +1,4 @@
-<nav #navbar class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+<nav #navBar class="navbar navbar-expand-md fixed-top navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="" alt="logo" /></a>
     <button
@@ -50,10 +50,23 @@
       </ul>
 
       <ul class="navbar-nav ms-auto mt-2 align-items-center mt-lg-0">
-        <li class="nav-item">
+        <div class="nav-item dropdown">
           <a
-            class="nav-link position-relative"
-            routerLink="/cart"
+            class="nav-link dropdown-toggle"
+            type="button"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-xl fa-user text-main"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li role="button"><a class="dropdown-item" routerLinkActive="active-link" routerLink="/forget-password">ForgetPassword</a></li>
+          </ul>
+        </div>
+
+        <li class="nav-item">
+          <a class="nav-link position-relative" routerLink="/cart"
             ><i class="fa-2xl text-main fas fa-shopping-cart"></i>
             <span
               class="badge rounded-pill bg-warning position-absolute top-0 end-0"

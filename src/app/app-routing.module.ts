@@ -23,6 +23,14 @@ const routes: Routes = [
         title: 'Home',
       },
       {
+        path: 'forget-password',
+        loadComponent: () =>
+          import('./components/forget-password/forget-password.component').then(
+            (m) => m.ForgetPasswordComponent
+          ),
+        title: 'Forget Password',
+      },
+      {
         path: 'cart',
         loadComponent: () =>
           import('./components/cart/cart.component').then(

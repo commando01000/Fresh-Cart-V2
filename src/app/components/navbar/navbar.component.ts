@@ -1,4 +1,11 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+  Renderer2,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -22,7 +29,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _cartService: CartService,
-    private _router: Router
+    private _router: Router,
+    private _renderer2: Renderer2
   ) {}
   ngOnInit(): void {
     // Load authentication state from AuthService
@@ -66,11 +74,21 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  @ViewChild('navBar') navbar!: ElementRef;
   // scroll Event
   @HostListener('window:scroll') // works for body, document, window
-  @ViewChild('navBar')
-  navElement: ElementRef;
-  onWindowScroll(): void {}
+  onWindowScroll(): void {
+    this._renderer2.setStyle(
+      this.navbar.nativeElement,
+      'transition',
+      'all 0.3s'
+    );
+    if (window.scrollY > 100) {
+      this._renderer2.addClass(this.navbar.nativeElement, 'px-3');
+    } else {
+      this._renderer2.removeClass(this.navbar.nativeElement, 'px-3');
+    }
+  }
 
   SignOut(): void {
     this._authService.SignOut();

@@ -62,7 +62,7 @@
         <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
       </button>
     </form>
-    
+
     <!-- Google Login Button -->
     <div class="text-center my-3">
       <button class="btn btn-danger" (click)="loginWithGoogle()">
@@ -70,11 +70,16 @@
       </button>
     </div>
 
-    <div class="w-100 text-center">
-      <span> Don't have an account?</span>
-      <a routerLink="/auth/register"> Register</a>
+    <div class="w-100 d-flex justify-content-between text-center">
+      <div>
+        <span> Don't have an account?</span>
+        <a routerLink="/auth/register"> Register</a>
+      </div>
+      <div>
+        <a routerLink="/auth/forgot-password"> Forgot Password?</a>
+      </div>
     </div>
-    
+
     <p class="alert alert-danger p-1 w-50 mx-auto" *ngIf="errorMessage">
       {{ errorMessage }}
     </p>

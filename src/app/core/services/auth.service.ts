@@ -59,4 +59,35 @@ export class AuthService {
       this.userData.next(decodedToken);
     }
   }
+
+  SendCode(email: string): Observable<any> {
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',
+      {
+        email: email,
+      }
+    );
+  }
+
+  VerifyCode(resetCode: string): Observable<any> {
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode',
+      {
+        resetCode: resetCode,
+      }
+    );
+  }
+
+  ResetPassword(email: string, rePassword: string): Observable<any> {
+    let formObj: any = {
+      email: email,
+      newPassword: rePassword,
+    };
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/resetPassword',
+      {
+        formObj,
+      }
+    );
+  }
 }
