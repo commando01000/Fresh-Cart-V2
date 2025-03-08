@@ -139,7 +139,7 @@ export class ForgetPasswordComponent {
             this.toastr.success('Password reset successfully', 'Success');
             this.isLoading = false;
             this._authService.SignOut();
-            this._router.navigate(['/Login']);
+            this._router.navigate(['/login']);
             this.usrMsg = '';
           },
           error: (error) => {

@@ -41,6 +41,7 @@ export class CartComponent implements OnInit {
       next: (response) => {
         this.toastr.success(response.message, 'Success');
         this._renderer2.setAttribute(btn, 'disabled', 'false');
+        this._cartService.cartNumber.next(response.numOfCartItems);
         this.cartDetails = response.data;
       },
       error: (error) => {

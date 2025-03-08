@@ -20,11 +20,6 @@ export class CartService {
       'https://ecommerce.routemisr.com/api/v1/cart',
       {
         productId: productId,
-      },
-      {
-        headers: {
-          token: localStorage.getItem('token') || '',
-        },
       }
     );
   }
@@ -38,12 +33,7 @@ export class CartService {
 
   removeCartItem(itemId: string): Observable<any> {
     return this._httpClient.delete(
-      `https://ecommerce.routemisr.com/api/v1/cart/${itemId}`,
-      {
-        headers: {
-          token: localStorage.getItem('token') || '',
-        },
-      }
+      `https://ecommerce.routemisr.com/api/v1/cart/${itemId}`
     );
   }
 
@@ -52,23 +42,13 @@ export class CartService {
       `https://ecommerce.routemisr.com/api/v1/cart/${itemId}`,
       {
         count: quantity,
-      },
-      {
-        headers: {
-          token: localStorage.getItem('token') || '',
-        },
       }
     );
   }
 
   clearCart(): Observable<any> {
     return this._httpClient.delete(
-      'https://ecommerce.routemisr.com/api/v1/cart',
-      {
-        headers: {
-          token: localStorage.getItem('token') || '',
-        },
-      }
+      'https://ecommerce.routemisr.com/api/v1/cart'
     );
   }
 
@@ -78,11 +58,6 @@ export class CartService {
       `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`,
       {
         shippingAddress: orderForm,
-      },
-      {
-        headers: {
-          token: localStorage.getItem('token') || '',
-        },
       }
     );
   }

@@ -79,14 +79,11 @@ export class AuthService {
   }
 
   ResetPassword(email: string, rePassword: string): Observable<any> {
-    let formObj: any = {
-      email: email,
-      newPassword: rePassword,
-    };
-    return this._HttpClient.post(
+    return this._HttpClient.put(
       'https://ecommerce.routemisr.com/api/v1/auth/resetPassword',
       {
-        formObj,
+        email: email,
+        newPassword: rePassword,
       }
     );
   }

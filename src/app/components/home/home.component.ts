@@ -8,11 +8,20 @@ import { Product } from 'src/app/core/interfaces/product';
 import { Category } from 'src/app/core/interfaces/category';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from 'src/app/core/pipes/search.pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CutTextPipe, CarouselModule, RouterLink],
+  imports: [
+    CommonModule,
+    CutTextPipe,
+    CarouselModule,
+    SearchPipe,
+    FormsModule,
+    RouterLink,
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
@@ -30,6 +39,7 @@ export class HomeComponent implements OnInit {
 
   Products: Product[] = [];
   Categories: Category[] = [];
+  searchTerm: string = '';
 
   categoryOptions: OwlOptions = {
     loop: true,
