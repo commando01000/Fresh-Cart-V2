@@ -103,9 +103,13 @@
                 <span class="small text-muted">{{
                   product.price | currency
                 }}</span>
-                <span
-                  ><i class="fas fa-star rating-color"></i
-                  >{{ product.ratingsAverage }}</span
+                <span>
+                  <i
+                    [class.rating-color]="product.ratingsAverage >= i"
+                    *ngFor="let i of [1, 2, 3, 4, 5]"
+                    class="fas fa-star"
+                  ></i>
+                  {{ product.ratingsAverage }}</span
                 >
               </div>
             </div>

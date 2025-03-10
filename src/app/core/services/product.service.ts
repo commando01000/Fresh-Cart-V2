@@ -18,6 +18,12 @@ export class ProductService {
     );
   }
 
+  getCategoryDetails(id: string) {
+    return this._httpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/categories/${id}`
+    );
+  }
+
   getProductDetails(id: string) {
     return this._httpClient.get(
       `https://ecommerce.routemisr.com/api/v1/products/${id}`

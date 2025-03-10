@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { auth2Guard } from './core/guards/auth2.guard';
 import { PaymentComponent } from './components/payment/payment.component';
+import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,14 @@ const routes: Routes = [
             (m) => m.CartComponent
           ),
         title: 'Cart',
+      },
+      {
+        path: 'category/:id',
+        loadComponent: () =>
+          import('./components/categorydetails/categorydetails.component').then(
+            (m) => m.CategorydetailsComponent
+          ),
+        title: 'Category',
       },
       {
         path: 'brands',
