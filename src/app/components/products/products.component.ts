@@ -45,6 +45,7 @@ export class ProductsComponent implements OnInit {
     });
   }
   pageChanged(event: any): void {
+    debugger;
     this._productService.getProducts(event).subscribe({
       next: (response: any) => {
         this.Products = response.data;

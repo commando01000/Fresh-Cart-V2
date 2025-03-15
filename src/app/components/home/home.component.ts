@@ -10,6 +10,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from 'src/app/core/pipes/search.pipe';
+import { WishlistService } from 'src/app/core/services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -34,12 +35,14 @@ export class HomeComponent implements OnInit {
     private _productService: ProductService,
     private _cartService: CartService,
     private toastr: ToastrService,
-    private _renderer2: Renderer2
+    private _renderer2: Renderer2,
+    private _wishlistService: WishlistService
   ) {}
 
   Products: Product[] = [];
   Categories: Category[] = [];
   searchTerm: string = '';
+  wishListItems: string[] = [];
 
   categoryOptions: OwlOptions = {
     loop: true,
@@ -106,6 +109,20 @@ export class HomeComponent implements OnInit {
         console.log('complete');
       },
     });
+
+    this._wishlistService.getWishlistItems().subscribe({
+      next: (response) => {
+        console.log(response);
+        this._wishlistService.wishlistNumber.next(response.count);
+        this.wishListItems = response.data.map((item: any) => item._id);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('complete');
+      },
+    });
   }
 
   addToCart(productId: string, btn: HTMLButtonElement): void {
@@ -117,6 +134,42 @@ export class HomeComponent implements OnInit {
         this.toastr.success(response.message, 'Success');
         this._renderer2.removeAttribute(btn, 'disabled');
         this._cartService.cartNumber.next(response.numOfCartItems);
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+        this._renderer2.removeAttribute(btn, 'disabled');
+      },
+      complete: () => {},
+    });
+  }
+
+  addToWishlist(productId: string, btn: HTMLElement): void {
+    // disable button to prevent multiple clicks
+    this._wishlistService.addToWishlist(productId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.toastr.success(response.message, 'Success');
+        this._renderer2.setAttribute(btn, 'disabled', 'true');
+        this.wishListItems = response.data;
+        this._wishlistService.wishlistNumber.next(this.wishListItems.length);
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+        this._renderer2.removeAttribute(btn, 'disabled');
+      },
+      complete: () => {},
+    });
+  }
+
+  removeFromWishlist(productId: string, btn: HTMLElement): void {
+    // disable button to prevent multiple clicks
+    this._wishlistService.removeFromWishlist(productId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.toastr.success(response.message, 'Success');
+        this._renderer2.setAttribute(btn, 'disabled', 'true');
+        this.wishListItems = response.data;
+        this._wishlistService.wishlistNumber.next(this.wishListItems.length);
       },
       error: (error) => {
         this.toastr.error(error.error.message, 'Error');

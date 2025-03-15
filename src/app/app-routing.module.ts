@@ -4,6 +4,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { auth2Guard } from './core/guards/auth2.guard';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CategorydetailsComponent } from './components/categorydetails/categorydetails.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,14 @@ const routes: Routes = [
             (m) => m.CartComponent
           ),
         title: 'Cart',
+      },
+      {
+        path: 'wishlist',
+        loadComponent: () =>
+          import('./components/wishlist/wishlist.component').then(
+            (m) => m.WishlistComponent
+          ),
+        title: 'Wishlist',
       },
       {
         path: 'category/:id',

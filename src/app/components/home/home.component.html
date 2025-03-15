@@ -45,6 +45,7 @@
   </div>
 </section>
 
+<!-- Categories Slider -->
 <section class="py-4">
   <div>Some tags before</div>
   <owl-carousel-o [options]="categoryOptions">
@@ -83,6 +84,18 @@
         class="col-sm-6 col-md-4 col-lg-3 col-xl-2"
       >
         <div class="product h-100 d-flex flex-column">
+          <i
+            *ngIf="!this.wishListItems.includes(product._id)"
+            (click)="addToWishlist(product._id, heart)"
+            #heart
+            class="fa-regular fa-heart heart"
+          ></i>
+          <i
+            *ngIf="this.wishListItems.includes(product._id)"
+            (click)="removeFromWishlist(product._id, heart)"
+            #heart
+            class="fa-solid fa-heart heart"
+          ></i>
           <header>
             <img
               class="w-100 img-fluid"

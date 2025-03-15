@@ -107,3 +107,42 @@ img {
   z-index: 9999;
   font-size: 20px;
 }
+
+.product {
+  position: relative;
+  border: 1px solid #0aad0a;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 4px;
+  box-shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+
+  &:hover .heart {
+    opacity: 1;
+  }
+
+  &:hover .add-to-cart {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    transform: translateY(0);
+    z-index: 1;
+  }
+
+  .add-to-cart {
+    opacity: 0;
+    transform: translateY(150%);
+    transition: 0.8s ease-in-out;
+  }
+}
+
+.heart {
+  font-size: 25px !important;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}

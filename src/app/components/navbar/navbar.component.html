@@ -61,9 +61,26 @@
             <i class="fa-solid fa-xl fa-user text-main"></i>
           </a>
           <ul class="dropdown-menu">
-            <li role="button"><a class="dropdown-item" routerLinkActive="active-link" routerLink="/forget-password">ForgetPassword</a></li>
+            <li role="button">
+              <a
+                class="dropdown-item"
+                routerLinkActive="active-link"
+                routerLink="/forget-password"
+                >ForgetPassword</a
+              >
+            </li>
           </ul>
         </div>
+
+        <li class="nav-item">
+          <a class="nav-link position-relative" routerLink="/wishlist"
+            ><i class="fa-2xl text-danger fa-solid fa-heart"></i>
+            <span
+              class="badge rounded-pill bg-warning position-absolute top-0 end-0"
+              >{{ wishlistNumber }}</span
+            >
+          </a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link position-relative" routerLink="/cart"

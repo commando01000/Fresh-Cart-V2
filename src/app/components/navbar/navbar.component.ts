@@ -11,6 +11,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { BehaviorSubject } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
+import { WishlistService } from 'src/app/core/services/wishlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,12 +26,14 @@ export class NavbarComponent implements OnInit {
    */
   isLogin = new BehaviorSubject(false);
   cartNumber: number = 0;
+  wishlistNumber: number = 0;
 
   constructor(
     private _authService: AuthService,
     private _cartService: CartService,
     private _router: Router,
-    private _renderer2: Renderer2
+    private _renderer2: Renderer2,
+    private _wishlistService: WishlistService
   ) {}
   ngOnInit(): void {
     // Load authentication state from AuthService
@@ -59,6 +62,29 @@ export class NavbarComponent implements OnInit {
         console.log(error);
       },
       complete: () => {},
+    });
+
+    this._wishlistService.getWishlistItems().subscribe({
+      next: (response) => {
+        this._wishlistService.wishlistNumber.next(response.count);
+        this.wishlistNumber = this._wishlistService.wishlistNumber.getValue();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {},
+    });
+
+    this._wishlistService.wishlistNumber.subscribe({
+      next: (response) => {
+        this.wishlistNumber = response;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('complete');
+      },
     });
 
     this._cartService.cartNumber.subscribe({
